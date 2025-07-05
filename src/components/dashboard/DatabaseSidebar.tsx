@@ -1,8 +1,7 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { DatabaseIcon, TableIcon, ChartBarIcon, QueryIcon, ArrowLeftIcon } from 'lucide-react';
+import { DatabaseIcon, TableIcon, ChartBarIcon, MessageCircleIcon, ArrowLeftIcon } from 'lucide-react';
 
 interface DatabaseSidebarProps {
   activeTab: string;
@@ -16,7 +15,7 @@ export const DatabaseSidebar = ({ activeTab, onTabChange, onDisconnect, dbType }
     {
       id: 'query',
       label: 'Query Interface',
-      icon: QueryIcon,
+      icon: MessageCircleIcon,
       description: 'Ask questions in natural language'
     },
     {
