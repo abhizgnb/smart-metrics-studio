@@ -9,7 +9,186 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      database_connections: {
+        Row: {
+          created_at: string | null
+          database_name: string
+          db_type: string
+          host: string
+          id: string
+          is_active: boolean | null
+          name: string
+          password_encrypted: string
+          port: number
+          schema_info: Json | null
+          updated_at: string | null
+          user_id: string | null
+          username: string
+        }
+        Insert: {
+          created_at?: string | null
+          database_name: string
+          db_type: string
+          host: string
+          id?: string
+          is_active?: boolean | null
+          name: string
+          password_encrypted: string
+          port: number
+          schema_info?: Json | null
+          updated_at?: string | null
+          user_id?: string | null
+          username: string
+        }
+        Update: {
+          created_at?: string | null
+          database_name?: string
+          db_type?: string
+          host?: string
+          id?: string
+          is_active?: boolean | null
+          name?: string
+          password_encrypted?: string
+          port?: number
+          schema_info?: Json | null
+          updated_at?: string | null
+          user_id?: string | null
+          username?: string
+        }
+        Relationships: []
+      }
+      forecasts: {
+        Row: {
+          ai_insight: Json | null
+          connection_id: string | null
+          created_at: string | null
+          date_column: string
+          forecast_data: Json
+          id: string
+          periods: number
+          table_name: string
+          user_id: string | null
+          value_column: string
+        }
+        Insert: {
+          ai_insight?: Json | null
+          connection_id?: string | null
+          created_at?: string | null
+          date_column: string
+          forecast_data: Json
+          id?: string
+          periods: number
+          table_name: string
+          user_id?: string | null
+          value_column: string
+        }
+        Update: {
+          ai_insight?: Json | null
+          connection_id?: string | null
+          created_at?: string | null
+          date_column?: string
+          forecast_data?: Json
+          id?: string
+          periods?: number
+          table_name?: string
+          user_id?: string | null
+          value_column?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "forecasts_connection_id_fkey"
+            columns: ["connection_id"]
+            isOneToOne: false
+            referencedRelation: "database_connections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      insights: {
+        Row: {
+          connection_id: string | null
+          created_at: string | null
+          data: Json | null
+          id: string
+          insight: string
+          question: string
+          suggested_chart: string | null
+          user_id: string | null
+        }
+        Insert: {
+          connection_id?: string | null
+          created_at?: string | null
+          data?: Json | null
+          id?: string
+          insight: string
+          question: string
+          suggested_chart?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          connection_id?: string | null
+          created_at?: string | null
+          data?: Json | null
+          id?: string
+          insight?: string
+          question?: string
+          suggested_chart?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "insights_connection_id_fkey"
+            columns: ["connection_id"]
+            isOneToOne: false
+            referencedRelation: "database_connections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      query_history: {
+        Row: {
+          connection_id: string | null
+          created_at: string | null
+          error_message: string | null
+          execution_time: number | null
+          id: string
+          question: string
+          row_count: number | null
+          sql_query: string
+          user_id: string | null
+        }
+        Insert: {
+          connection_id?: string | null
+          created_at?: string | null
+          error_message?: string | null
+          execution_time?: number | null
+          id?: string
+          question: string
+          row_count?: number | null
+          sql_query: string
+          user_id?: string | null
+        }
+        Update: {
+          connection_id?: string | null
+          created_at?: string | null
+          error_message?: string | null
+          execution_time?: number | null
+          id?: string
+          question?: string
+          row_count?: number | null
+          sql_query?: string
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "query_history_connection_id_fkey"
+            columns: ["connection_id"]
+            isOneToOne: false
+            referencedRelation: "database_connections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
